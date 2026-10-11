@@ -1,35 +1,66 @@
 ---
-name: photo-abstract-editorial
-description: Create a clean, vertical editorial artwork that preserves an uploaded photograph as the original image and pairs it with a restrained, photo-derived abstract memory panel and poetic English title. Use when asked to transform a photo into an abstract editorial diptych, photo-plus-abstraction composition, visual memory panel, or minimalist archival poster without redrawing or stylizing the source photo.
+name: photo-minimal-flat-editorial
+description: 把一张照片做成"原始摄影区域 + 极简扁平矢量插画面板 + 中英标题"的竖版编辑作品（1366×2048）。当用户要求把照片转成"极简扁平矢量插画 / 照片＋插画双联 / 保留原照片像素的编辑感画作"时使用。Create a clean vertical editorial piece that preserves the uploaded photograph as-is and pairs it with a minimal flat-vector illustration panel plus a title.
 ---
 
-# Photo Abstract Editorial
+# Photo Minimal Flat Editorial（照片极简扁平插画 · 改造版）
 
-Create one finished image from one uploaded photograph. Keep the photograph faithful; derive the lower abstract panel only from the photograph's observed spatial, tonal, and color relationships.
+> 本 skill 基于 [ZzzLc0405/photo-abstract-editorial](https://github.com/ZzzLc0405/photo-abstract-editorial) **深度改造**：把原作者"抽象色块面板"路线，改为 **「原照片像素 ＋ 极简扁平矢量插画」** 路线。原项目作者 ZzzLc0405（@AM.），仅限个人学习 / 研究 / 非商业用途。
 
-## Workflow
+## 成品是什么
 
-1. Inspect the photograph internally. Identify three to six decisive spatial facts: subject relationships, scale, axes, direction, intervals, overlap, depth, rhythm, light, color roles, and negative space.
-2. Keep the photo as the upper or principal section. Permit only proportional scaling or a slight crop needed for the composition. Never redraw, extend, replace, retouch, apply a filter to, or otherwise alter its content.
-3. Reconstruct the retained relationships below as a sparse abstract motif—not a thumbnail, trace, illustration, vector icon, or style transfer. Prefer relationships over silhouettes and preserve only the minimum recognition cues needed for distinctive subjects.
-4. Compose a vertical work with an untextured, uniform ivory lower panel. Adapt the photo/panel proportions to the photograph rather than splitting the image mechanically in half. Join both sections directly with no frame, shadow, collage, tape, or mockup effect.
-5. Use one primary mark family and no more than two supporting families. Extract a muted palette solely from the photo; use generous whitespace and avoid invented decorative elements, colors, symbols, and symmetry.
-6. Create one original English title of two to five words, grounded in visible facts. Place it only on the abstract panel in a restrained editorial serif face. Add a short subtitle only when it adds meaning.
-7. Return only the completed composition. Do not add commentary, analysis, title options, labels, dates, logos, or watermarks.
+一张 **竖版 1366×2048** 的编辑作品，自上而下三段：
 
-## Guardrails
+1. **照片区（约 0–47%）**：严格保留**原始照片像素**，不重绘、不加滤镜、不裁切主体。
+2. **插画面板（约 47–89%）**：**忠于原图的完整插画**——原照片的天空 / 山峦 / 云海 / 雾 / 草坡占多少就画多少。象牙白 `#F3F0E8` **不是**默认底，只出现在原图本身空白／虚化处。
+3. **文字带（约 89–100%）**：一行英文衬线大标题（Title Case）＋ 一行中文小字副标题；素材来自图库时，再补一行小字署名 `Photo by 作者 · 图库 — 来源链接`。
 
-- Treat the uploaded photo as the sole content source.
-- Keep the panel background flat, continuous, and neutral ivory; exclude gradients, paper texture, grain, glow, shadows, vignettes, stains, collage artifacts, and scan effects.
-- Make every abstract mark traceable to a visual fact in the source photo.
-- Preserve people as irregular continuous short vertical marks or gently tapered blocks, never illustrated heads, limbs, faces, or clothing.
-- Preserve landmark architecture with at most one to three identity cues; omit architectural surface detail.
+## 三种版式（必须逐张判断，不能默认"上照片下插画"）
 
-## Reference Prompt
+- **标准双联**：照片满宽在上，下方是**忠于原图的完整插画**（不是缩成象牙白底上的小景）。适用：背景虚化散景 / 单个建筑正面 / 主体占高 >70% / 无明确小主体。
+- **贯穿式联画**：画面里有**天然横向承接元素**（地面 / 水面 / 屋面 / 栏杆 / 草地）时，把分界线藏在横向元素里、元素跨线连贯。分界线必须是**有宽度的柔和过渡**，不是硬直线。
+- **整张插画**：不做双联，**整幅插画铺满上部（1366×1823）**＋ 底部文字带。用于**有寓意的复合场景**（园林 / 古建 / 动物＋文物等）；此时成品**不叠原照片**，带水印的素材也可直接使用。
 
-Read the appropriate full prompt before producing the image:
+## 推荐工作流：两步走（关键）
 
-- Chinese: [references/photo-abstract-editorial-prompt.zh-CN.md](references/photo-abstract-editorial-prompt.zh-CN.md)
-- English: [references/photo-abstract-editorial-prompt.en.md](references/photo-abstract-editorial-prompt.en.md)
+**不要指望一次出成品** —— 实测模型不肯在底部排中英标题。正确做法：
 
-Use [assets/examples](assets/examples) as visual input examples only. Do not reuse their subject matter, colors, or composition unless the user supplies that exact image.
+1. **第一步：只让模型画"插画本身"** —— **忠于原图的完整画面、铺满画布**、**不要出现照片 / 双联 / 分区线 / 任何文字**。提示词见 [references/photo-minimal-flat-editorial-prompt.zh-CN.md](references/photo-minimal-flat-editorial-prompt.zh-CN.md)。
+2. **第二步：本地合成** —— 原始照片像素 ＋ 插画 ＋ 中英标题 ＋ 角标（＋署名行）→ 精确 1366×2048（用 ffmpeg / Pillow 等）。
+
+好处：照片区像素**绝对不被模型碰**；标题用真字体排；画幅精确；换任何模型都成立。
+
+> 若要**只改成品里的一处**、其余保持不动（例如只换背景、只改花心）：把**已有的插画层**当作图生图输入、并在提示词里写明"其余逐像素保持不变、只改 X"，可避免整张重画。
+
+## 核心原则（按优先级）
+
+1. **背景忠实（最高）**：原照片的天空 / 山峦 / 云海 / 雾 / 草坡占多少画面就画多少；天空等大面积背景必须画成**连续铺展的色块平面**（可几层色调相接）；**绝不用留白替换原图本有的内容与颜色**，留白不得占主导、不得侵入画面。
+2. **忠于原图**：插画化是艺术提炼，不是重新创作；不放大主体、不减少主体数量、不改姿态与朝向；颜色全部取自原图，不发明原图没有的颜色。
+3. **极简 ≠ 删意义**：一眼认出主体，第二眼才发现被极简了；保留主体 **＋** 衬托客体（天空 / 光线 / 地面 / 代表性环境物）。
+4. **材质要有层次（毛发 / 织物）**：毛发／毛皮主体**绝不能画成一整块实心平色**——用**同色系 2–4 个明度层次**做体积，**保留固有花纹**（虎斑条纹、斑点、口鼻与胸腹对比、耳尖深色），用**圆钝分块**而非锯齿碎毛暗示毛簇，五官清晰可辨；织物（毯 / 绒 / 地毯）要**同色系柔和分层**（否则像抹布）。
+   ⚠️ **不要**在提示词里写"用平涂色块概括毛发"——那会直接把毛发拍平。
+5. **密纹理要画、但必须克制**：花蕊 / 花心 / 花盘、昆虫翅膀的翅脉与斑纹等"由大量细小单元构成"的结构，必须画出纹理（**不要一整块纯色圆**）；但**不是越密越好**——密集深色点阵会被看成"芝麻饼 / 蜂巢"。点／线的颜色必须与基色**同色系且更淡**，密度**稀疏、成组**；**首选「2 个同心色阶 ＋ 外缘一圈稀疏短放射线」**，远看仍是**一整块干净的基色**。
+6. **画面完整**：主体与关键元素不被四边裁断，但**背景要自然铺展到画布四边**。
+
+## 命名规则
+
+`主体 + 行为/环境 + 两位随机数字`，纯中文，无英文前缀。例：`猫端坐92`、`双猫廊下26`。
+结果目录归类：自己的→行旅、人物→人像、动物→动物、景色→风物。
+
+## Guardrails（避坑清单）
+
+- 不要在上半部画插画；不要"所有图都默认上照片下插画"（先判版式）。
+- 分界线不要是硬直线、也不要淡到看不见。
+- 主体不要被裁切 / 被放大撑满；不要减少主体数量；不要把猫画成纯色块或卡通老虎纹。
+- **毛发动物不要画成一整块无明暗无花纹的实心平色**；**毯子不要画成几块生硬大色块拼贴**（像抹布）。
+- **花心 / 花盘不要画成一整块纯色圆**；**也不要画成"黄底深色点铺满"的芝麻饼**——点要少、要淡、要与基色同色系。
+- 不要同心圆环光斑、手电筒锥形光束；夜景不要压成灰调。
+- 石墙 / 地面不要只画一条扁平色带（要有厚度）。
+- 不要用大面积留白替换原图里的天空 / 山峦 / 云海等实景；不要把一大片天空简化成几朵孤立的小云；不要把"禁渐变"执行成一排排水平色带堆叠。
+- 除底部中英标题（与署名行）外，画面**不得出现任何其它文字 / 数字 / 色号 / 角标 / logo / 水印**。
+
+## 提示词与示例
+
+- 中文提示词：[references/photo-minimal-flat-editorial-prompt.zh-CN.md](references/photo-minimal-flat-editorial-prompt.zh-CN.md)
+- English prompt：[references/photo-minimal-flat-editorial-prompt.en.md](references/photo-minimal-flat-editorial-prompt.en.md)
+- 示例图 [assets/examples](assets/examples)：来自原项目（原作者拍摄），仅用于理解"保留照片 ＋ 插画面板"的双联结构；本改造版的成图风格以提示词为准。

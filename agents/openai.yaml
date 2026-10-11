@@ -1,4 +1,4 @@
 interface:
-  display_name: "Photo Abstract Editorial"
-  short_description: "Create photo-derived editorial abstractions."
-  default_prompt: "Create a clean photo-and-abstract editorial artwork from this image."
+  display_name: "Photo Minimal Flat Editorial"
+  short_description: "Create photo + minimal flat-vector illustration editorials."
+  default_prompt: "使用 photo-minimal-flat-editorial，把这张照片做成『原照片 ＋ 极简扁平矢量插画 ＋ 中英标题』的竖版作品（1366×2048）。"
